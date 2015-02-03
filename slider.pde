@@ -3,7 +3,7 @@
 class Slider extends PVector {
   int id, l;
   String dir = "h", func = "---";
-  boolean over, locked;
+  boolean over, locked, dragged;
   float xp, yp;
   float s;
 
