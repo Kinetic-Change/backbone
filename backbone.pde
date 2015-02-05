@@ -18,13 +18,13 @@ float r = 110;
 
 color [] curveColors = new color[8];
 
-boolean animate, showSelected2D = true, showTimeCurves2D = true, showTimeCurves, showOctagons = true, showSelVals = true, showShapes = true, showScalars = true, debug;
+boolean animate, showSelected2D, showTimeCurves2D, showTimeCurves, showOctagons, showSelVals, showShapes = true, showScalars, debug;
 boolean showBone = true;
 
 Slider s1;
 
 void setup() {
-  size(1920, 1080, P3D);
+  size(1920, 1080, OPENGL);
   //size(1280, 800, OPENGL);
 
   myPort = new Serial(this, Serial.list()[0], 11500);
@@ -47,7 +47,7 @@ void setup() {
 
   strokeCap(ROUND);
 
-  createOctagonButtons(150, 866, 27.7, 27.7);
+  createOctagonButtons(150, 866, 26.3, 26.3);
 }
 
 void draw() {
@@ -115,7 +115,7 @@ void draw() {
   hint(DISABLE_DEPTH_TEST);
   if (showSelected2D) {
     pushMatrix();
-    translate(width*.22, height * .54);
+    translate(width*.2, height * .54);
     rotate(-PI);
     scale(1.9);
     displaySelected(selected, debug);
@@ -134,9 +134,9 @@ void draw() {
     pushMatrix();
     translate(152, height-215);
     //translate(width/2 + r*1.15 +350, 380);
-    scale(.1);
+    scale(.13);
     strokeWeight(1/.2);
-    displayLayersOctagons(selected, 2.5);
+    displayLayersOctagons(selected, 1.83);
     popMatrix();
   }
   displayText(showSelected2D, showTimeCurves2D);
@@ -201,6 +201,7 @@ void mousePressed() {
   clickOctagonButtons();
   if (mouseX > width/2-r && mouseX< width/2+r) {    
     setNextValue(picked3D(selected));
+     animate = false;
   }
 }
 
