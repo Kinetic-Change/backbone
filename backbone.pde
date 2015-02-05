@@ -18,7 +18,7 @@ float r = 110;
 
 color [] curveColors = new color[8];
 
-boolean animate, showSelected2D, showTimeCurves2D, showTimeCurves, showOctagons, showSelVals, showShapes = true, showScalars, rotateBone, debug;
+boolean animate, showSelected2D, showTimeCurves2D, showTimeCurves, showOctagons, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
 boolean showBone = true;
 
 Slider s1;
@@ -124,7 +124,7 @@ void draw() {
 
   if (showTimeCurves2D) {
     pushMatrix();
-    translate(width/2 + r*1.15 + 200, height*.295);
+    translate(width/2 + r*1.32 + 200, height*.295);
     scale(.6);
     displayTimeCurves2D(curveColors, selected);
     popMatrix();

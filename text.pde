@@ -14,7 +14,7 @@ void displayText(boolean a, boolean b) {
         fill(200, 100, 0, 150);
         textAlign(RIGHT);
         textFont(font2);
-        text(l.id, width/2 - r * 1.18 - 310, 300);
+        text(l.id + 1, width/2 - r * 1.18 - 310, 300);
       }
     }
 
@@ -35,10 +35,10 @@ void displayText(boolean a, boolean b) {
     fill(70);
     textAlign(LEFT);
     textFont(font3);
-    text("01.01.2015", width/2 + r*1.15 + 200, 300);
+    text("01.01.2015", width/2 + r*1.3 + 200, 300);
     textAlign(RIGHT);
     textFont(font3);
-    text("31.12.2015", width/2 + r*1.15 + 650, 300);
+    text("31.12.2015", width/2 + r*1.3 + 650, 300);
   }
   fill(70);
   textAlign(LEFT);

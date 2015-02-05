@@ -359,7 +359,7 @@ void displayTimeCurves2D(color [] c, int _s) {
     beginShape();
     for (int i = 0; i<layers.size (); i++) {
       Layer l = layers.get(i);
-      curveVertex(i*spacing, l.val[j].mag() + yOff);
+      vertex(i*spacing, l.val[j].mag() + yOff);
     }
     endShape();
 
