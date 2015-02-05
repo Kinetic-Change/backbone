@@ -14,7 +14,7 @@ void displayText(boolean a, boolean b) {
         fill(200, 100, 0, 150);
         textAlign(RIGHT);
         textFont(font2);
-        text(l.id, width/2 - r * 1.15 - 310, 300);
+        text(l.id, width/2 - r * 1.18 - 310, 300);
       }
     }
 

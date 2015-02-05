@@ -18,7 +18,7 @@ float r = 110;
 
 color [] curveColors = new color[8];
 
-boolean animate, showSelected2D, showTimeCurves2D, showTimeCurves, showOctagons, showSelVals, showShapes = true, showScalars, debug;
+boolean animate, showSelected2D, showTimeCurves2D, showTimeCurves, showOctagons, showSelVals, showShapes = true, showScalars, rotateBone, debug;
 boolean showBone = true;
 
 Slider s1;
@@ -68,7 +68,7 @@ void draw() {
     rotX = rotX + (pmouseY - mouseY)*0.002;
   }
 
-  rotZ+=.0035;
+  if (rotateBone) rotZ+=.0035;
 
   //selected = int((selected + 0.12*(sel-selected)));
 
@@ -102,7 +102,7 @@ void draw() {
     noStroke();
     displayLayersEdges(selected);
   }
-  
+
   displayLayersScalars(selected, showScalars);
 
   if (showSelVals) displaySelectedVals(selected);
@@ -184,6 +184,10 @@ void keyPressed() {
     showScalars =! showScalars;
   }
 
+  if (key == 'r') {
+    rotateBone =! rotateBone;
+  }
+
   if (key == 'd') {
     debug =! debug;
   }
@@ -192,16 +196,16 @@ void keyPressed() {
   }
 }
 
-void setNextValue(int s){
+void setNextValue(int s) {
   sel = s;
   myPort.write(byte(sel));
 }
 
 void mousePressed() {
   clickOctagonButtons();
-  if (mouseX > width/2-r && mouseX< width/2+r) {    
+  if (mouseX > width/2-r && mouseX< width/2 + r) {    
     setNextValue(picked3D(selected));
-     animate = false;
+    animate = false;
   }
 }
 
