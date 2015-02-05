@@ -1,12 +1,14 @@
+import processing.serial.*;
+Serial myPort;
+
 ArrayList <Layer> layers;
 ArrayList <Slider> sliders;
 ArrayList <Button> octagonButtons = new ArrayList <Button>();
 
-
 PFont font0, font1, font2, font3;
 
-int selected = 0;
-int sel = 54-1;
+int selected = 0; //current value
+int sel = 54-1; //next value
 int spacing = 9 + 5;
 
 float rotX = PI/2, rotY, rotZ = 0;
@@ -21,10 +23,11 @@ boolean showBone = true;
 
 Slider s1;
 
-
 void setup() {
   size(1920, 1080, P3D);
   //size(1280, 800, OPENGL);
+
+  myPort = new Serial(this, Serial.list()[0], 11500);
 
   layers = new ArrayList <Layer>();
   sliders = new ArrayList <Slider>();
@@ -50,10 +53,10 @@ void setup() {
 void draw() {
   if (animate) {
     if (selected == 54-1) {
-      sel=0;
+      setNextValue(0);
     }
     if (selected == 0) {
-      sel=53;
+      setNextValue(53);
     }
   }
 
@@ -99,6 +102,7 @@ void draw() {
     noStroke();
     displayLayersEdges(selected);
   }
+  
   displayLayersScalars(selected, showScalars);
 
   if (showSelVals) displaySelectedVals(selected);
@@ -106,9 +110,6 @@ void draw() {
 
   if (showTimeCurves) displayTimeCurves(curveColors, selected);
   popMatrix();
-
-
-
 
   ortho();
   hint(DISABLE_DEPTH_TEST);
@@ -148,10 +149,10 @@ void keyPressed() {
     //setLayersValues(r);
   }
   if (key == 'c')  setCurvesColors();
-  if (key == 's')  sel = int(random(0, layers.size()-1));
+  if (key == 's')  setNextValue(int(random(0, layers.size()-1)));
 
   if (key == '1') {
-    sel = 54-1;
+    setNextValue(54-1);
     animate =! animate;
   }
 
@@ -191,10 +192,15 @@ void keyPressed() {
   }
 }
 
+void setNextValue(int s){
+  sel = s;
+  myPort.write(byte(sel));
+}
+
 void mousePressed() {
   clickOctagonButtons();
-  if (mouseX > width/2-r && mouseX< width/2+r) {
-    sel = picked3D(selected);
+  if (mouseX > width/2-r && mouseX< width/2+r) {    
+    setNextValue(picked3D(selected));
   }
 }
 
