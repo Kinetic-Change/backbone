@@ -20,7 +20,7 @@ void loop() {
 
   current = current + 0.2*(next-current);
   for (int i=0; i<strip.numPixels(); i++) {
-    strip.setPixelColor(i,0.5*gauss(i,current),0.3*gauss(i,current),0.15*gauss(i,current));
+    strip.setPixelColor(i,gauss(i,current),0.7*gauss(i,current),0.15*gauss(i,current));
   }
 
   strip.show();  
@@ -28,9 +28,10 @@ void loop() {
 
 int gauss (int i, float offset) { //compute value at LED i, given center of bell curve at offset
   float x = 0.5*(i+offset)-1.5;  
-  return (int)(255.f*pow(5,-pow(x,4)));
+  return (int)(255.f*pow(5,-pow(x,2)));
 }
 
 void serialEvent() {
   next = - float(Serial.read());
+//  Serial.write(offset);
 }
