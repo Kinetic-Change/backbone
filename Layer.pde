@@ -11,7 +11,7 @@ void createLayers(String table_name, int _a, int _spac, float _r) {
 
     l.val = new PVector[8];
     for (int i = 0; i<l.val.length; i++) {
-      float _x =  row.getFloat("val" + (i+1));
+      float _x =  row.getFloat("val" + (i+1))/10;
       l.val[i] = new PVector(_x, 0);
       l.val[i].mult(_r); 
       l.val[i].rotate(i * (PI/4));
@@ -87,8 +87,6 @@ class Layer extends PVector {
       overAlpha = overAlpha + 0.123 * (0 - overAlpha);
     }
   }
-
-
 
   void createPs() {
     cps = new ArrayList <PVector>(); 
@@ -359,7 +357,7 @@ void displayTimeCurves2D(color [] c, int _s) {
     beginShape();
     for (int i = 0; i<layers.size (); i++) {
       Layer l = layers.get(i);
-      vertex(i*spacing, l.val[j].mag() + yOff);
+      curveVertex(i*spacing, l.val[j].mag() + yOff);
     }
     endShape();
 
@@ -489,7 +487,7 @@ int picked3D(int _s) {
   for (int i=0; i< layers.size (); i++) {
     Layer l = layers.get(i);
     if (l.over) {
-      picked = i;
+      picked =i;
     }
   }
   return picked;
