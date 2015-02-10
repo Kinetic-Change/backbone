@@ -21,12 +21,14 @@ color [] curveColors = new color[8];
 boolean animate, showSelected2D, showTimeCurves2D, showTimeCurves, showOctagons, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
 boolean showBone = true;
 
+int lastTime;
+
 Slider s1;
 
 void setup() {
   size(1920, 1080, OPENGL);
   //size(1280, 800, OPENGL);
-
+  
   myPort = new Serial(this, Serial.list()[0], 11500);
 
   layers = new ArrayList <Layer>();
@@ -48,6 +50,8 @@ void setup() {
   strokeCap(ROUND);
 
   createOctagonButtons(150, 866, 26.3, 26.3);
+  
+  lastTime=millis();
 }
 
 void draw() {
@@ -70,10 +74,10 @@ void draw() {
 
   if (rotateBone) rotZ+=.0035;
 
-  //selected = int((selected + 0.12*(sel-selected)));
+  //selected = int((selected + 0.05*(sel-selected)));
 
-  if (selected!=sel && sel > selected) selected++;
-  if (selected!=sel && sel < selected) selected--;
+  if (selected!=sel && sel > selected && timer(20)) selected++;
+  if (selected!=sel && sel < selected && timer(20)) selected--;
 
   updateLayers(selected);
   if (showOctagons) updateButtons();
@@ -206,6 +210,16 @@ void mousePressed() {
   if (mouseX > width/2-r && mouseX< width/2 + r) {    
     setNextValue(picked3D(selected));
     animate = false;
+  }
+}
+
+boolean timer(int time) {
+  if ((millis()-lastTime) > time) {
+    lastTime = millis();
+    return true;
+  }
+  else {
+    return false;  
   }
 }
 

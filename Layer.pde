@@ -11,7 +11,7 @@ void createLayers(String table_name, int _a, int _spac, float _r) {
 
     l.val = new PVector[8];
     for (int i = 0; i<l.val.length; i++) {
-      float _x =  row.getFloat("val" + (i+1))/10;
+      float _x =  row.getFloat("val" + (i+1));
       l.val[i] = new PVector(_x, 0);
       l.val[i].mult(_r); 
       l.val[i].rotate(i * (PI/4));
