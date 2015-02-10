@@ -163,12 +163,12 @@ class Layer extends PVector {
   }
 
   void displayOctagon(int _s, float xOff, float yOff) {
-
+    noStroke();
     if (id == _s) {
-      stroke(255, alpha);
+      //stroke(255, alpha);
       fill(150, alpha);
     } else {
-      stroke(150, alpha);
+      //stroke(150, alpha);
       fill(200, alpha);
     }
     b = octagonButtons.get(id);
@@ -223,7 +223,7 @@ class Layer extends PVector {
 
 
   void displayScalar(int _s) {
-
+    strokeWeight(1f);
     stroke(255, alpha);
 
     if (id == _s) { 
@@ -244,12 +244,12 @@ class Layer extends PVector {
       endShape();
     }
 
-    int spac1 = 2;
-    int spac2 = spac1 * 5;
-    int length1 = 2;
-    int length2 = length1 * 2;
+    float spac1 = 2;
+    float spac2 = spac1 * 10;
+    float length1 = 3;
+    float length2 = 6.5;
     for (int i = 0; i<val.length; i++ ) {
-      for (int j = 10; j < val[i].mag (); j+=spac1) {  
+      for (float j = 10; j < val[i].mag (); j+=spac1) {  
         beginShape(LINES);
         vertex(j, -length1/2, z);
         vertex(j, length1/2, z);

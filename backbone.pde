@@ -4,6 +4,8 @@ Serial myPort;
 ArrayList <Layer> layers;
 ArrayList <Slider> sliders;
 ArrayList <Button> octagonButtons = new ArrayList <Button>();
+ArrayList <Button> slideButtons = new ArrayList <Button>();
+PImage [] slide = new PImage[10];
 
 PFont font0, font1, font2, font3;
 
@@ -28,13 +30,14 @@ Slider s1;
 void setup() {
   size(1920, 1080, OPENGL);
   //size(1280, 800, OPENGL);
-  
+
   myPort = new Serial(this, Serial.list()[0], 11500);
 
   layers = new ArrayList <Layer>();
   sliders = new ArrayList <Slider>();
 
   createLayers("bone", 54, spacing, r);
+  createSlideButtons(10, slide, 20);
   //setCurvesColors();
   //setNoise();
   //createSliders();
@@ -50,7 +53,7 @@ void setup() {
   strokeCap(ROUND);
 
   createOctagonButtons(150, 866, 26.3, 26.3);
-  
+
   lastTime=millis();
 }
 
@@ -81,6 +84,7 @@ void draw() {
 
   updateLayers(selected);
   if (showOctagons) updateButtons();
+
 
   background(0);
   noLights();
@@ -120,6 +124,9 @@ void draw() {
   if (showSelected2D) {
     pushMatrix();
     translate(width*.2, height * .54);
+    translate(r, 0);
+    translate(-r, 0);
+    rotate(rotZ);
     rotate(-PI);
     scale(1.9);
     displaySelected(selected, debug);
@@ -146,6 +153,10 @@ void draw() {
   displayText(showSelected2D, showTimeCurves2D);
   debugOctagonButtons(debug);
   picked3D(selected);
+
+  checkSlideButtons(true);
+  growSlideButtons(true);
+  displaySlideButtons(true);
 }
 
 void keyPressed() {
@@ -206,10 +217,11 @@ void setNextValue(int s) {
 }
 
 void mousePressed() {
+  setNextValue(picked3D(selected));
+
   clickOctagonButtons();
   if (mouseX > width/2-r && mouseX< width/2 + r) {    
-    setNextValue(picked3D(selected));
-    animate = false;
+    //animate = false;
   }
 }
 
@@ -217,9 +229,8 @@ boolean timer(int time) {
   if ((millis()-lastTime) > time) {
     lastTime = millis();
     return true;
-  }
-  else {
-    return false;  
+  } else {
+    return false;
   }
 }
 

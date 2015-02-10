@@ -30,7 +30,11 @@ void displayText(boolean a, boolean b) {
   fill(120);
   textAlign(LEFT);
   textFont(font0);
-  text("2015", 140, 300);
+  if (selected < 27) {
+    text("2015", 140, 300);
+  } else {
+    text("2016", 140, 300);
+  }
   if (b) {
     fill(70);
     textAlign(LEFT);
@@ -38,7 +42,7 @@ void displayText(boolean a, boolean b) {
     text("01.01.2015", width/2 + r*1.3 + 200, 300);
     textAlign(RIGHT);
     textFont(font3);
-    text("31.12.2015", width/2 + r*1.3 + 650, 300);
+    text("31.12.2016", width/2 + r*1.3 + 650, 300);
   }
   fill(70);
   textAlign(LEFT);
