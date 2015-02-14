@@ -142,7 +142,7 @@ class Layer extends PVector {
     b = octagonButtons.get(id);
     if (b.over || over) {
       hint(DISABLE_DEPTH_TEST);
-      fill(200, 100, 0, overAlpha);
+      fill(200, 100, 0, 100);
     } else {
       hint(ENABLE_DEPTH_TEST);
     }
@@ -222,10 +222,15 @@ class Layer extends PVector {
   }
 
 
-  void displayScalar(int _s) {
-    strokeWeight(1f);
-    stroke(255, alpha);
+  void displayScalar(int _s, boolean _3d) {
 
+    if (_3d) {
+      strokeWeight(1f/zoom);
+    } else {
+      strokeWeight(1f);
+    }
+
+    stroke(255, alpha);
     if (id == _s) { 
       stroke(255, 100);
       hint(DISABLE_DEPTH_TEST);
@@ -294,7 +299,7 @@ void displayLayersScalars(int _s, boolean _d) {
   if (_d) {
     for (int i = 0; i<layers.size (); i++) {
       Layer l = layers.get(i);
-      l.displayScalar(_s);
+      l.displayScalar(_s, true);
     }
   }
 }
@@ -459,7 +464,7 @@ void displaySelected(int _s, boolean d) {
       stroke(200, 100, 0, 200);
       fill(200, 100, 0, 90);
       ol.display2D();
-      ol.displayScalar(selected);
+      ol.displayScalar(selected, false);
     }
   }
 
@@ -467,7 +472,7 @@ void displaySelected(int _s, boolean d) {
   fill(255, 26);
   l.display2D();
   strokeWeight(.4f);
-  l.displayScalar(selected);
+  l.displayScalar(selected, false);
   hint(ENABLE_DEPTH_TEST);
   fill(0);
   strokeWeight(.75f/2.3);

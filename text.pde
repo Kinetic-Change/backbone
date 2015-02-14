@@ -4,7 +4,7 @@ void displayText(boolean a, boolean b) {
     fill(200);
     textAlign(RIGHT);
     textFont(font1);
-    text(selected + 1, width/2 - r * 1.15 - 260, 300);
+    text((selected+1)*2, width/2 - r * 1.15 - 270, 300);
 
 
     for (int i = 0; i<layers.size (); i++) {
@@ -13,8 +13,8 @@ void displayText(boolean a, boolean b) {
         noStroke();
         fill(200, 100, 0, 150);
         textAlign(RIGHT);
-        textFont(font2);
-        text(l.id + 1, width/2 - r * 1.18 - 310, 300);
+        textFont(font1);
+        text((l.id+1)*2, width/2-r*2, 300);
       }
     }
 
@@ -23,7 +23,7 @@ void displayText(boolean a, boolean b) {
     fill(70);
     textAlign(LEFT);
     textFont(font2);
-    text("/ 54", width/2 - r * 1.15 - 250, 300);
+    text("/ 108", width/2 - r * 1.15 - 260, 300);
   }
 
 
@@ -68,7 +68,7 @@ void displaySelectedVals(int _s) {
     text(a, 0, 0, 0);
     popMatrix();
     stroke(200, 150);
-    strokeWeight(1f);
+    strokeWeight(1f/zoom);
     beginShape(LINES);
     vertex((l.x + l.val[i].x)*1.7f, (l.y + l.val[i].y)*1.7f, l.z + l.val[i].z + 27);
     vertex((l.x + l.val[i].x), (l.y + l.val[i].y), l.z + l.val[i].z);
@@ -92,7 +92,7 @@ void displaySelectedVals(int _s) {
         text(a, 0, 0, 0);
         popMatrix();
         stroke(200, 100, 0, 190);
-        strokeWeight(1f);
+        strokeWeight(1f/zoom);
         beginShape(LINES);
         vertex((ol.x + ol.val[j].x)*1.7f, (ol.y + ol.val[j].y)*1.7f, ol.z + ol.val[j].z + 27);
         vertex((ol.x + ol.val[j].x), (ol.y + ol.val[j].y), ol.z + ol.val[j].z);

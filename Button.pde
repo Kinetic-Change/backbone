@@ -7,6 +7,8 @@ class Button extends PVector {
   boolean over = false;
   boolean clicked = false;
   boolean view=false;
+  
+  float slideAlpha;
 
   Button(int _id, float _x, float _y, float _b) {
     super(_x, _y);
@@ -24,7 +26,7 @@ class Button extends PVector {
     this.id = _id;
     this.b = _b;
     this.h=_b;
-    
+    //this.slide = loadImage("slides/Slides"+ (_id +1) + ".png");
   }
 
   void grow() {
@@ -36,7 +38,6 @@ class Button extends PVector {
   }
 
   void displayPoint() {
-
     stroke(100);
     beginShape(POINTS);
     vertex(x, y);
@@ -124,7 +125,7 @@ void clickOctagonButtons() {
     b.click();
     if (b.clicked) {
       sel = i;
-      animate = false;
+      //animate = false;
     }
   }
 }
