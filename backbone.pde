@@ -7,6 +7,9 @@ ArrayList <Button> octagonButtons = new ArrayList <Button>();
 ArrayList <Button> slideButtons = new ArrayList <Button>();
 PImage [] slide;
 
+int whichSlide=16;
+int maxSlides=20;
+
 PFont font0, font1, font2, font3;
 
 int selected = 0; //current value
@@ -34,7 +37,7 @@ void setup() {
   size(screenw, screenh, OPENGL);
   //size(1280, 800, OPENGL);
 
-  myPort = new Serial(this, Serial.list()[0], 11500);
+  myPort = new Serial(this, Serial.list()[4], 11500);
 
   layers = new ArrayList <Layer>();
   sliders = new ArrayList <Slider>();
@@ -55,10 +58,11 @@ void setup() {
 
   lastTime = millis();
 
-  slide = new PImage[20];
+  slide = new PImage[maxSlides];
   for (int i = 0; i < slide.length; i++) {
     slide[i] = loadImage("sl/Slides" + (i+1) + ".png");
   }
+  setNextValue(whichSlide);
 }
 
 void pulse(int id1, int id2) {
@@ -89,6 +93,7 @@ void draw() {
 
   if (selected!=sel && sel > selected && timer(20)) selected++;
   if (selected!=sel && sel < selected && timer(20)) selected--;
+
   translateBone();
   updateLayers(selected);
   if (showOctagons) updateButtons();
@@ -165,9 +170,15 @@ void draw() {
   checkSlideButtons(true);
   growSlideButtons(true);
   displaySlideButtons(true);
+  /*
+  if (!animate) {
+   setNextValue(picked3D(selected));
+   } else {
+   setNextValue(selected);
+   }
+   */
 
-
-  //image(slide[16], 0f, 0f);
+  image(slide[whichSlide], 0f, 0f);
 }
 
 void keyPressed() {
@@ -220,6 +231,23 @@ void keyPressed() {
   if (key == 'p') {
     saveFrame("shots/####.jpeg");
   }
+
+
+  if (keyCode == RIGHT) {
+    whichSlide++;
+    whichSlide=whichSlide%maxSlides;
+    println("Slide "+whichSlide);
+    setNextValue(whichSlide);
+  }
+
+  if (keyCode == LEFT) {
+    whichSlide--;
+    if(whichSlide<0){
+      whichSlide=maxSlides-1;
+    }
+    println("Slide " +whichSlide);
+    setNextValue(whichSlide);
+  }
 }
 
 void setNextValue(int s) {
@@ -229,7 +257,7 @@ void setNextValue(int s) {
 
 void mousePressed() {
   if (mouseButton == LEFT) {
-    setNextValue(picked3D(selected));
+
 
     clickOctagonButtons();
     if (mouseX > width/2-r && mouseX< width/2 + r) {    
@@ -262,4 +290,3 @@ void translateBone() {
     yOff = yOff - new_yOff;
   }
 }
-
