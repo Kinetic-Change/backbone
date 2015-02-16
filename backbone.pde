@@ -7,7 +7,7 @@ ArrayList <Button> octagonButtons = new ArrayList <Button>();
 ArrayList <Button> slideButtons = new ArrayList <Button>();
 PImage [] slide;
 
-int whichSlide=16;
+int whichSlide=12;
 int maxSlides=20;
 
 PFont font0, font1, font2, font3;
