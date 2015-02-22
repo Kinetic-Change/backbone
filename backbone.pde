@@ -7,7 +7,7 @@ ArrayList <Button> octagonButtons = new ArrayList <Button>();
 ArrayList <Button> slideButtons = new ArrayList <Button>();
 PImage [] slide;
 
-int whichSlide=12;
+int whichSlide=10;
 int maxSlides=20;
 
 PFont font0, font1, font2, font3;
@@ -26,7 +26,7 @@ float r = 110;
 
 color [] curveColors = new color[8];
 
-boolean animate, showSelected2D = true, showTimeCurves2D, showTimeCurves, showOctagons = true, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
+boolean animate, showSelected2D = true, showTimeCurves2D=true, showTimeCurves, showOctagons = true, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
 boolean showBone = true;
 
 int lastTime;
@@ -37,7 +37,7 @@ void setup() {
   size(screenw, screenh, OPENGL);
   //size(1280, 800, OPENGL);
 
-  myPort = new Serial(this, Serial.list()[4], 11500);
+  myPort = new Serial(this, Serial.list()[0], 11500);
 
   layers = new ArrayList <Layer>();
   sliders = new ArrayList <Slider>();
@@ -55,9 +55,7 @@ void setup() {
   strokeCap(ROUND);
 
   createOctagonButtons(150, 866, 26.3, 26.3);
-
   lastTime = millis();
-
   slide = new PImage[maxSlides];
   for (int i = 0; i < slide.length; i++) {
     slide[i] = loadImage("sl/Slides" + (i+1) + ".png");
@@ -65,24 +63,14 @@ void setup() {
   setNextValue(whichSlide);
 }
 
-void pulse(int id1, int id2) {
-  if (selected == id1) {
-    setNextValue(id2);
-  }
-  if (selected == id2) {
-    setNextValue(id1);
-  }
-}
-
 void draw() {
-  if (animate) pulse(0, 53);
+
+  if (whichSlide <= 11) {
+    pulse(1, 54);
+  }
 
   lights();
-  //yOff = height/1.12;
 
-
-  /*if (mouseX > width/2 - r*1.15 - 100 && mouseX < width/2 + r*1.15 + 100) 
-   rotX = map(mouseY, 0, height, PI/2, 0);*/
   if (mousePressed && mouseButton == LEFT) {
     rotX = rotX + (pmouseY - mouseY)*0.002;
   }
@@ -90,12 +78,12 @@ void draw() {
   if (rotateBone) rotZ+=.0035;
 
   //selected = int((selected + 0.05*(sel-selected)));
+  //if (selected!=sel && sel > selected && timer(20)) selected++;
+  //if (selected!=sel && sel < selected && timer(20)) selected--;
 
-  if (selected!=sel && sel > selected && timer(20)) selected++;
-  if (selected!=sel && sel < selected && timer(20)) selected--;
-
-  translateBone();
-  updateLayers(selected);
+  //translateBone();
+  yOff = height*.89;
+  //updateLayers(selected);
   if (showOctagons) updateButtons();
 
 
@@ -137,8 +125,8 @@ void draw() {
   if (showSelected2D) {
     pushMatrix();
     translate(width*.2, height * .54);
-    translate(r, 0);
-    translate(-r, 0);
+    //translate(r, 0);
+    //translate(-r, 0);
     rotate(rotZ);
     rotate(-PI);
     scale(1.9);
@@ -178,7 +166,7 @@ void draw() {
    }
    */
 
-  image(slide[whichSlide], 0f, 0f);
+  //image(slide[whichSlide], 0f, 0f);
 }
 
 void keyPressed() {
@@ -242,10 +230,10 @@ void keyPressed() {
 
   if (keyCode == LEFT) {
     whichSlide--;
-    if(whichSlide<0){
+    if (whichSlide<0) {
       whichSlide=maxSlides-1;
     }
-    println("Slide " +whichSlide);
+    //println("Slide " +whichSlide);
     setNextValue(whichSlide);
   }
 }
@@ -290,3 +278,4 @@ void translateBone() {
     yOff = yOff - new_yOff;
   }
 }
+

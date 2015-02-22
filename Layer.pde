@@ -139,14 +139,7 @@ class Layer extends PVector {
       fill(255, alpha);
     }
 
-    b = octagonButtons.get(id);
-    if (b.over || over) {
-      hint(DISABLE_DEPTH_TEST);
-      fill(200, 100, 0, 100);
-    } else {
-      hint(ENABLE_DEPTH_TEST);
-    }
-
+   
 
     float h = 5;
 
@@ -164,13 +157,7 @@ class Layer extends PVector {
 
   void displayOctagon(int _s, float xOff, float yOff) {
     noStroke();
-    if (id == _s) {
-      //stroke(255, alpha);
-      fill(150, alpha);
-    } else {
-      //stroke(150, alpha);
-      fill(200, alpha);
-    }
+    fill(255, alpha);
     b = octagonButtons.get(id);
     if (b.over || over) { 
       fill(200, 100, 0, 150); 
@@ -197,12 +184,9 @@ class Layer extends PVector {
 
     b = octagonButtons.get(id);
     if (b.over || over) {
-      hint(DISABLE_DEPTH_TEST);
       fill(200, 100, 0, 60);
       stroke(200, 100, 0, 100);
-    } else {
-      hint(ENABLE_DEPTH_TEST);
-    }
+    } 
 
     beginShape();
     for (int i = 0; i<cps.size (); i++) {
@@ -224,24 +208,18 @@ class Layer extends PVector {
 
   void displayScalar(int _s, boolean _3d) {
 
+    stroke(255, alpha);
     if (_3d) {
       strokeWeight(1f/zoom);
     } else {
-      strokeWeight(1f);
+      strokeWeight(.75f/1.9);
     }
 
-    stroke(255, alpha);
-    if (id == _s) { 
-      stroke(255, 100);
-      hint(DISABLE_DEPTH_TEST);
-    } else {
-      hint(ENABLE_DEPTH_TEST);
-    }
     b = octagonButtons.get(id);
     if (b.over || over) {
-      hint(DISABLE_DEPTH_TEST);
-      stroke(200, 100, 0, 150);
+      stroke(200, 100, 0);
     } 
+
     for (int i = 0; i<val.length; i++ ) {
       beginShape(LINES);
       vertex(0, 0, z);
@@ -276,8 +254,8 @@ class Layer extends PVector {
 void updateLayers(int _s) {
   for (int i = 0; i<layers.size (); i++) {
     Layer l = layers.get(i);
-    l.update(_s);
-    l.glow();
+    //l.update(_s);
+    //l.glow();
   }
 }
 
@@ -356,13 +334,14 @@ void displayTimeCurves2D(color [] c, int _s) {
 
   for (int j = 0; j<8; j++) {
     //stroke(c[j], 150);
-    stroke(60);
-    strokeWeight(1);
+    //stroke(60);
+    strokeWeight(.75/.8f);
     yOff+=r*1.1;
     beginShape();
-    for (int i = 0; i<layers.size (); i++) {
+    for (int i = 0; i<layers.size(); i++) {
       Layer l = layers.get(i);
-      curveVertex(i*spacing, l.val[j].mag() + yOff);
+      stroke(l.alpha);
+      vertex(i*spacing, l.val[j].mag() + yOff);
     }
     endShape();
 
@@ -468,7 +447,7 @@ void displaySelected(int _s, boolean d) {
     }
   }
 
-  stroke(255, 140); 
+  stroke(255, l.alpha); 
   fill(255, 26);
   l.display2D();
   strokeWeight(.4f);
@@ -517,6 +496,15 @@ void checkLayers3D() {
     } else {
       l.over = false;
     }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////// MOTION
+
+void pulse(int _fromLayer, int _toWhichLayer) {
+  for (int i = _fromLayer - 1; i<_toWhichLayer; i++) {
+    Layer l = layers.get(i);
+    l.alpha = (sin(-millis() / 850.0 + i / 90.0) + 1.0) / 2.0 * 180.0 + 20.0;
   }
 }
 

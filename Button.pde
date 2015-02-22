@@ -26,7 +26,7 @@ class Button extends PVector {
     this.id = _id;
     this.b = _b;
     this.h=_b;
-    //this.slide = loadImage("slides/Slides"+ (_id +1) + ".png");
+
   }
 
   void grow() {
