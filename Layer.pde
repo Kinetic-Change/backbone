@@ -502,7 +502,7 @@ void checkLayers3D() {
 ////////////////////////////////////////////////////////////////////////////////////// MOTION
 
 void pulse(int _fromLayer, int _toWhichLayer) {
-  for (int i = _fromLayer - 1; i<_toWhichLayer; i++) {
+  for (int i = _fromLayer; i<_toWhichLayer+1; i++) {
     Layer l = layers.get(i);
     l.alpha = (sin(-millis() / 850.0 + i / 90.0) + 1.0) / 2.0 * 180.0 + 20.0;
   }

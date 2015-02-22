@@ -66,7 +66,7 @@ void setup() {
 void draw() {
 
   if (whichSlide < 11) {
-    pulse(1, 54);
+    pulse(0, 53);
   }
 
   if (whichSlide == 11) {
@@ -86,6 +86,16 @@ void draw() {
   }
   if (whichSlide == 16) {
     fromTo(31, 39);
+  }
+  if (whichSlide == 17) {
+    fromTo(47, 47);
+  }
+  if (whichSlide == 18) {
+    selected = 53;
+    pulse(0, 53);
+  }
+  if (whichSlide ==19) {
+    pulse(0, 53);
   }
 
   lights();
