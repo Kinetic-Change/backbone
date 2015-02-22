@@ -65,33 +65,43 @@ void setup() {
 
 void draw() {
 
+  if (selected!=sel && sel > selected) selected++;
+  if (selected!=sel && sel < selected) selected--;
+
   if (whichSlide < 11) {
     pulse(0, 53);
   }
 
   if (whichSlide == 11) {
+    sel = 0;
     fromTo(0, 0);
   }
   if (whichSlide == 12) {
+    sel = 1;
     fromTo(0, 1);
   }
   if (whichSlide == 13) {
+    sel = 7;
     fromTo(0, 7);
   }
   if (whichSlide == 14) {
+    sel = 23;
     fromTo(7, 23);
   }
   if (whichSlide == 15) {
+    sel = 31;
     fromTo(23, 31);
   }
   if (whichSlide == 16) {
+    sel = 39;
     fromTo(31, 39);
   }
   if (whichSlide == 17) {
+    sel = 47;
     fromTo(47, 47);
   }
   if (whichSlide == 18) {
-    selected = 53;
+    //selected = 53;
     pulse(0, 53);
   }
   if (whichSlide ==19) {
