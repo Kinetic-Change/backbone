@@ -26,7 +26,7 @@ float r = 110;
 
 color [] curveColors = new color[8];
 
-boolean animate, showSelected2D = true, showTimeCurves2D=true, showTimeCurves, showOctagons = true, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
+boolean animate, showSelected2D = true, showTimeCurves2D, showTimeCurves, showOctagons = true, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
 boolean showBone = true;
 
 int lastTime;
@@ -65,8 +65,27 @@ void setup() {
 
 void draw() {
 
-  if (whichSlide <= 11) {
+  if (whichSlide < 11) {
     pulse(1, 54);
+  }
+
+  if (whichSlide == 11) {
+    fromTo(0, 0);
+  }
+  if (whichSlide == 12) {
+    fromTo(0, 1);
+  }
+  if (whichSlide == 13) {
+    fromTo(0, 7);
+  }
+  if (whichSlide == 14) {
+    fromTo(7, 23);
+  }
+  if (whichSlide == 15) {
+    fromTo(23, 31);
+  }
+  if (whichSlide == 16) {
+    fromTo(31, 39);
   }
 
   lights();
@@ -81,9 +100,9 @@ void draw() {
   //if (selected!=sel && sel > selected && timer(20)) selected++;
   //if (selected!=sel && sel < selected && timer(20)) selected--;
 
-  //translateBone();
-  yOff = height*.89;
-  //updateLayers(selected);
+  translateBone();
+  //yOff = height*.89;
+  updateLayers(selected);
   if (showOctagons) updateButtons();
 
 
@@ -155,9 +174,9 @@ void draw() {
   debugOctagonButtons(debug);
   picked3D(selected);
 
-  checkSlideButtons(true);
-  growSlideButtons(true);
-  displaySlideButtons(true);
+  // checkSlideButtons(true);
+  // growSlideButtons(true);
+  // displaySlideButtons(true);
   /*
   if (!animate) {
    setNextValue(picked3D(selected));
@@ -166,7 +185,7 @@ void draw() {
    }
    */
 
-  //image(slide[whichSlide], 0f, 0f);
+  image(slide[whichSlide], 0f, 0f);
 }
 
 void keyPressed() {

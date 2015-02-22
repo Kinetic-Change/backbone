@@ -139,7 +139,7 @@ class Layer extends PVector {
       fill(255, alpha);
     }
 
-   
+
 
     float h = 5;
 
@@ -338,7 +338,7 @@ void displayTimeCurves2D(color [] c, int _s) {
     strokeWeight(.75/.8f);
     yOff+=r*1.1;
     beginShape();
-    for (int i = 0; i<layers.size(); i++) {
+    for (int i = 0; i<layers.size (); i++) {
       Layer l = layers.get(i);
       stroke(l.alpha);
       vertex(i*spacing, l.val[j].mag() + yOff);
@@ -506,5 +506,28 @@ void pulse(int _fromLayer, int _toWhichLayer) {
     Layer l = layers.get(i);
     l.alpha = (sin(-millis() / 850.0 + i / 90.0) + 1.0) / 2.0 * 180.0 + 20.0;
   }
+}
+
+void fromTo(int _fromLayer, int _toWhichLayer) {
+
+  for (int i = 0; i < layers.size (); i++) {
+    Layer l = layers.get(i);
+    l.alpha = (sin(-millis() / 800.0 + i / 15.0) + 1.0) / 2.0 * 3.0 + 8.0;
+  }
+
+  float phaseShift = map(_toWhichLayer - _fromLayer, 0.0, 54.0, 3.0, 15.0);
+  float velo = map(_toWhichLayer - _fromLayer, 0.0, 54.0, 150.0, 800.0);
+
+  for (int i = _fromLayer; i < _toWhichLayer+1; i++) {
+    Layer l = layers.get(i);
+    l.alpha = (sin(-millis() / velo + i / phaseShift) + 1.0) / 2.0 * 27.0 + 30.0;
+  }
+
+  Layer sl = layers.get(_toWhichLayer);
+  //sl.alpha = 120;
+  selected = _toWhichLayer;
+
+  //sbr[whichWeek] = 255.0;
+  //sbr[startWeek] = 255.0;
 }
 
