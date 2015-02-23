@@ -40,7 +40,7 @@ void setup() {
   size(screenw, screenh, OPENGL);
   //size(1280, 800, OPENGL);
 
-  myPort = new Serial(this, Serial.list()[0], 11500);
+  myPort = new Serial(this, Serial.list()[4], 11500);
 
   layers = new ArrayList <Layer>();
   sliders = new ArrayList <Slider>();
