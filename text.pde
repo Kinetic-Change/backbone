@@ -20,14 +20,14 @@ void displayText(boolean a, boolean b) {
 
 
 
-    fill(70);
+    fill(90);
     textAlign(LEFT);
     textFont(font2);
     text("/ 108", width/2 - r * 1.15 - 260, 300);
   }
 
 
-  fill(120);
+  fill(200);
   textAlign(LEFT);
   textFont(font0);
   if (selected < 27) {
@@ -36,7 +36,7 @@ void displayText(boolean a, boolean b) {
     text("2016", 140, 300);
   }
   if (b) {
-    fill(70);
+    fill(90);
     textAlign(LEFT);
     textFont(font3);
     text("01.01.2015", width/2 + r*1.3 + 200, 300);
@@ -101,4 +101,3 @@ void displaySelectedVals(int _s) {
     }
   }
 }
-

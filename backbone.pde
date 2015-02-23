@@ -10,8 +10,9 @@ ArrayList <Button> octagonButtons = new ArrayList <Button>();
 ArrayList <Button> slideButtons = new ArrayList <Button>();
 PImage [] slide;
 
-int whichSlide=10;
+int whichSlide=0;
 int maxSlides=20;
+
 
 PFont font0, font1, font2, font3;
 
@@ -50,10 +51,10 @@ void setup() {
 
   PVector p1 = new PVector(width/2 - (r*1.15) - 200, 100);
 
-  font0 = createFont("Arial-Black", 68);
-  font1 = createFont("Arial-Black", 32);
-  font2 = createFont("Arial-Black", 18);
-  font3 = createFont("Arial-Black", 8);
+  font0 = createFont("SegoeWP-SemiLight", 68);
+  font1 = createFont("SegoeWP-SemiLight", 32);
+  font2 = createFont("SegoeWPN", 18);
+  font3 = createFont("SegoeWPN", 8);
 
   strokeCap(ROUND);
 

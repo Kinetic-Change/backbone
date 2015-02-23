@@ -44,6 +44,10 @@ void keyPressed(KeyEvent e) {
     rotateBone =! rotateBone;
     println("rot");
   }
+  
+  if (key == 'x') {
+    saveFrame("screeen.png");
+  }
 
   if (key == 'd') {
     debug =! debug;
