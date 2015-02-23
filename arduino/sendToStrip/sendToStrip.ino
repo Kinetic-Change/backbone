@@ -84,9 +84,9 @@ void loop() {
 
   for (int i = 0; i < strip.numPixels(); i++) {
 
-    int r = int(map(br[i], 0.0, 255.0, 6.0, 255.0) * dimm);
-    int g = int(map(br[i], 0.0, 255.0, 5.0, 255.0) * dimm);
-    int b = int(map(br[i], 0.0, 255.0, 5.0, 235.0) * dimm);
+    int r = int(map(br[i], 0.0, 255.0, 15.0, 255.0) * dimm);
+    int g = int(map(br[i], 0.0, 255.0, 4.0, 255.0) * dimm);
+    int b = int(map(br[i], 0.0, 255.0, 0.0, 235.0) * dimm);
 
     // strip.setPixelColor(i, int(br[i]), int( br[i]), int(br[i]));
     strip.setPixelColor(i, r, g, b);
