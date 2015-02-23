@@ -44,9 +44,9 @@ void keyPressed(KeyEvent e) {
     rotateBone =! rotateBone;
     println("rot");
   }
-  
+
   if (key == 'x') {
-    saveFrame("screeen.png");
+    exit();
   }
 
   if (key == 'd') {
@@ -56,40 +56,41 @@ void keyPressed(KeyEvent e) {
     saveFrame("shots/####.jpeg");
   }
 
-
-  if (keyCode == RIGHT) {
-    whichSlide++;
-    whichSlide=whichSlide%maxSlides;
-    println("Slide "+whichSlide);
-    setNextValue(whichSlide);
-  }
-
-  if (keyCode == LEFT) {
-    whichSlide--;
-    if (whichSlide<0) {
-      whichSlide=maxSlides-1;
+  if (key==CODED) {
+    if (keyy == KeyEvent.VK_RIGHT) {
+      whichSlide++;
+      whichSlide=whichSlide%maxSlides;
+      println("Slide "+whichSlide);
+      setNextValue(whichSlide);
     }
-    println("Slide " +whichSlide);
-    setNextValue(whichSlide);
-  }
 
-
-  if (keyy == KeyEvent.VK_PAGE_DOWN) {  // left-arrow key; move square up
-    whichSlide++;
-    whichSlide=whichSlide%maxSlides;
-    println("next slide via remote");
-    println("Slide "+whichSlide);
-    setNextValue(whichSlide);
-  }
-  
-  if (keyy == KeyEvent.VK_PAGE_UP) {  // left-arrow key; move square up
-     whichSlide--;
-    if (whichSlide<0) {
-      whichSlide=maxSlides-1;
+    if (keyy == KeyEvent.VK_LEFT) {
+      whichSlide--;
+      if (whichSlide<0) {
+        whichSlide=maxSlides-1;
+      }
+      println("Slide " +whichSlide);
+      setNextValue(whichSlide);
     }
-    println("Slide " +whichSlide);
-     println("prev slide via remote");
-    setNextValue(whichSlide);
-    
+
+
+    if (keyy == KeyEvent.VK_PAGE_DOWN) {  // left-arrow key; move square up
+      whichSlide++;
+      whichSlide=whichSlide%maxSlides;
+      println("next slide via remote");
+      println("Slide "+whichSlide);
+      setNextValue(whichSlide);
+    }
+
+    if (keyy == KeyEvent.VK_PAGE_UP) {  // left-arrow key; move square up
+      whichSlide--;
+      if (whichSlide<0) {
+        whichSlide=maxSlides-1;
+      }
+      println("Slide " +whichSlide);
+      println("prev slide via remote");
+      setNextValue(whichSlide);
+    }
   }
 }
+
