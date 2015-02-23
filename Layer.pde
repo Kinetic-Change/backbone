@@ -522,11 +522,9 @@ void fromTo(int _fromLayer, int _toWhichLayer) {
     Layer l = layers.get(i);
     l.alpha = (sin(-millis() / velo + i / phaseShift) + 1.0) / 2.0 * 27.0 + 30.0;
   }
-
   Layer sl = layers.get(_toWhichLayer);
   //sl.alpha = 120;
   selected = _toWhichLayer;
-
   //sbr[whichWeek] = 255.0;
   //sbr[startWeek] = 255.0;
 }

@@ -40,7 +40,7 @@ Slider s1;
 void setup() {
   size(screenw, screenh, OPENGL);
   //size(1280, 800, OPENGL);
-println(Serial.list());
+  println(Serial.list());
   myPort = new Serial(this, Serial.list()[2], 11500);
 
   layers = new ArrayList <Layer>();
@@ -302,7 +302,8 @@ boolean timer(int time) {
   if ((millis()-lastTime) > time) {
     lastTime = millis();
     return true;
-  } else {
+  } 
+  else {
     return false;
   }
 }
@@ -322,3 +323,4 @@ void translateBone() {
     yOff = yOff - new_yOff;
   }
 }
+
