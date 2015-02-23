@@ -1,6 +1,9 @@
 import processing.serial.*;
 Serial myPort;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 ArrayList <Layer> layers;
 ArrayList <Slider> sliders;
 ArrayList <Button> octagonButtons = new ArrayList <Button>();
@@ -61,6 +64,7 @@ void setup() {
     slide[i] = loadImage("sl/Slides" + (i+1) + ".png");
   }
   setNextValue(whichSlide);
+  smooth(16);
 }
 
 void draw() {
@@ -317,4 +321,3 @@ void translateBone() {
     yOff = yOff - new_yOff;
   }
 }
-
