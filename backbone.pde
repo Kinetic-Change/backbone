@@ -23,14 +23,14 @@ int spacing = 9 + 5;
 int screenw = 1920, screenh = 1080;
 
 float rotX = PI/2, rotY, rotZ = 0;
-float yOff = screenh/1.2, new_yOff, tempY;
+float yOff = screenh/1.1, new_yOff, tempY;
 float zoom = 1.05;
 
 float r = 110;
 
 color [] curveColors = new color[8];
 
-boolean animate, showSelected2D = true, showTimeCurves2D, showTimeCurves, showOctagons = true, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
+boolean animate, showSelected2D = true, showTimeCurves2D, showTimeCurves, showOctagons = false, showSelVals, showShapes = true, showScalars = true, rotateBone, debug;
 boolean showBone = true;
 
 int lastTime;
@@ -106,20 +106,22 @@ void draw() {
     fromTo(47, 47);
   }
   if (whichSlide == 18) {
-    //selected = 53;
+    selected = 53;
     pulse(0, 53);
   }
   if (whichSlide ==19) {
+    selected = 53;
     pulse(0, 53);
   }
 
   lights();
 
-  if (mousePressed && mouseButton == LEFT) {
-    rotX = rotX + (pmouseY - mouseY)*0.002;
-  }
+  //if (mousePressed && mouseButton == LEFT) {
+  //rotX = rotX + (pmouseY - mouseY)*0.002;
+  //}
+  rotX = PI/2 - PI/7;
 
-  if (rotateBone) rotZ+=.0035;
+    if (rotateBone) rotZ+=.0035;
 
   //selected = int((selected + 0.05*(sel-selected)));
   //if (selected!=sel && sel > selected && timer(20)) selected++;

@@ -8,28 +8,28 @@ void keyPressed(KeyEvent e) {
   if (key == 's')  setNextValue(int(random(0, layers.size()-1)));
 
   if (key == '1') {
-    setNextValue(54-1);
-    animate =! animate;
+    //setNextValue(54-1);
+    //animate =! animate;
   }
 
   if (key == '2') {
-    showSelected2D =! showSelected2D;
+    //showSelected2D =! showSelected2D;
   }
 
   if (key == '3') {
-    showOctagons =! showOctagons;
+    //showOctagons =! showOctagons;
   }
 
   if (key == '4') {
-    showTimeCurves2D =! showTimeCurves2D;
+    //showTimeCurves2D =! showTimeCurves2D;
   }
 
   if (key == '5') {
-    showTimeCurves =! showTimeCurves;
+    //showTimeCurves =! showTimeCurves;
   }
 
   if (key == '6') {
-    showSelVals =! showSelVals;
+    //showSelVals =! showSelVals;
   }
 
   if (key == '7') {
@@ -41,7 +41,7 @@ void keyPressed(KeyEvent e) {
   }
 
   if (key == 'r') {
-    rotateBone =! rotateBone;
+    //rotateBone =! rotateBone;
     println("rot");
   }
 
@@ -50,7 +50,7 @@ void keyPressed(KeyEvent e) {
   }
 
   if (key == 'd') {
-    debug =! debug;
+    //debug =! debug;
   }
   if (key == 'p') {
     saveFrame("shots/####.jpeg");

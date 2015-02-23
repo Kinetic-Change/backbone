@@ -452,10 +452,13 @@ void displaySelected(int _s, boolean d) {
   l.display2D();
   strokeWeight(.4f);
   l.displayScalar(selected, false);
+ 
   hint(ENABLE_DEPTH_TEST);
   fill(0);
   strokeWeight(.75f/2.3);
+  if(whichSlide >=7)
   ellipse(0, 0, 20, 20);
+  
   strokeWeight(1.2f);
 
   if (d) {
