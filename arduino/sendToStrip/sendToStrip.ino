@@ -26,8 +26,12 @@ void setup() {
 
 void loop() {
 
-  if (slide <= 11) {
+  if (slide <= 1) {
     pulse();
+  } if (slide == 1) {
+    for (int i = 0; i < STRIP_LENGTH; i++) {
+      sbr[i] = 10.0;
+    }
   }
 
   if (slide == 11) {
@@ -55,7 +59,8 @@ void loop() {
   }
 
   if (slide == 17) {
-    fromTo(47 * 2, 47 * 2);
+    mark(47 * 2);
+    //fromTo(47 * 2, 48 * 2);
   }
 
   if (slide == 18) {
@@ -137,6 +142,7 @@ void upTo(int whichWeek) {
     sbr[i] = (sin(-millis() / 800.0 + i / 15.0) + 1.0) / 2.0 * 5.0 + 20.0;
     //sbr[i] = 0;
   }
+
 }
 
 
@@ -151,8 +157,20 @@ void fromTo(int startWeek, int whichWeek) {
     sbr[i] = (sin(-millis() / velo + i / phaseShift) + 1.0) / 2.0 * 40.0 + 70.0;
   }
 
-  sbr[whichWeek] = 255.0; //begrenzer 
-  sbr[startWeek] = 255.0;  //begrenzer 
+  for (int i = whichWeek; i < STRIP_LENGTH ; i++) { //alle werte
+    sbr[i] = (sin(-millis() / 800.0 + i / 15.0) + 1.0) / 2.0 * 5.0 + 20.0;
+    //sbr[i] = (0, 0, 0);
+
+  }
+
+  sbr[whichWeek] = 255.0; //begrenzer
+  sbr[startWeek] = 255.0;  //begrenzer
+}
+
+void mark(int whichWeek) {
+
+  sbr[whichWeek] = (sin(-millis() / 800.0 + whichWeek / 15.0) + 1.0) / 2.0 * 5.0 + 250.0;
+
 }
 
 

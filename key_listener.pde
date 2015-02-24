@@ -33,11 +33,11 @@ void keyPressed(KeyEvent e) {
   }
 
   if (key == '7') {
-    showShapes =! showShapes;
+    //showShapes =! showShapes;
   }
 
   if (key == '8') {
-    showScalars =! showScalars;
+    //showScalars =! showScalars;
   }
 
   if (key == 'r') {

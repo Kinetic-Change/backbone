@@ -4,7 +4,8 @@ void displayText(boolean a, boolean b) {
     fill(200);
     textAlign(RIGHT);
     textFont(font1);
-    //text((selected+1)*2, width/2 - r * 1.15 - 270, 300);
+    if (whichSlide == 19)
+      text((selected+1)*2, width/2 - r * 1.15 - 270, 300);
 
 
     for (int i = 0; i<layers.size (); i++) {
@@ -14,7 +15,8 @@ void displayText(boolean a, boolean b) {
         fill(200, 100, 0, 150);
         textAlign(RIGHT);
         textFont(font1);
-        //text((l.id+1)*2, width/2-r*2, 300);
+        if (whichSlide == 19)
+          text((l.id+1)*2, width/2-r*2, 300);
       }
     }
 
@@ -23,7 +25,8 @@ void displayText(boolean a, boolean b) {
     fill(90);
     textAlign(LEFT);
     textFont(font2);
-    //text("/ 108", width/2 - r * 1.15 - 260, 300);
+    if (whichSlide == 19)
+      text("/ 108", width/2 - r * 1.15 - 260, 300);
   }
 
 

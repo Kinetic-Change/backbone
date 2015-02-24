@@ -326,11 +326,6 @@ void displayTimeCurves2D(color [] c, int _s) {
   hint(DISABLE_DEPTH_TEST);
   noFill();
   stroke(200);
-  strokeWeight(.75f/.8f);
-  beginShape(LINES);
-  vertex(sl.z, 0);
-  vertex(sl.z, 1110);
-  endShape();
 
   for (int j = 0; j<8; j++) {
     //stroke(c[j], 150);
@@ -344,14 +339,6 @@ void displayTimeCurves2D(color [] c, int _s) {
       vertex(i*spacing, l.val[j].mag() + yOff);
     }
     endShape();
-
-    //stroke(c[j]);
-    stroke(200);
-    strokeWeight(8);
-    beginShape(POINTS);
-    vertex(sl.z, sl.val[j].mag()+yOff);
-    endShape();
-
 
     hint(DISABLE_DEPTH_TEST);
     noFill();

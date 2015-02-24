@@ -74,7 +74,7 @@ void draw() {
   if (selected!=sel && sel < selected) selected--;
 
   //if (whichSlide < 11) {
-    //pulse(0, 53);
+  //pulse(0, 53);
   //}
 
   if (whichSlide == 11) {
@@ -112,6 +112,12 @@ void draw() {
   if (whichSlide ==19) {
     selected = 53;
     pulse(0, 53);
+    showTimeCurves2D = true;
+    showOctagons = true;
+  }
+  else {
+    showTimeCurves2D = false;
+    showOctagons = false;
   }
 
   lights();
@@ -121,7 +127,7 @@ void draw() {
   //}
   rotX = PI/2 - PI/7;
 
-    if (rotateBone) rotZ+=.0035;
+  if (rotateBone) rotZ+=.0035;
 
   //selected = int((selected + 0.05*(sel-selected)));
   //if (selected!=sel && sel > selected && timer(20)) selected++;
