@@ -73,17 +73,17 @@ void draw() {
   if (selected!=sel && sel > selected) selected++;
   if (selected!=sel && sel < selected) selected--;
 
-  if (whichSlide < 11) {
-    pulse(0, 53);
-  }
+  //if (whichSlide < 11) {
+    //pulse(0, 53);
+  //}
 
   if (whichSlide == 11) {
     sel = 0;
     fromTo(0, 0);
   }
   if (whichSlide == 12) {
-    sel = 1;
-    fromTo(0, 1);
+    sel = 2;
+    fromTo(0, 2);
   }
   if (whichSlide == 13) {
     sel = 7;

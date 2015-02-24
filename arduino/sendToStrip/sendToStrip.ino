@@ -35,7 +35,7 @@ void loop() {
   }
 
   if (slide == 12) {
-    upTo(1 * 2);
+    upTo(2 * 2);
   }
 
   if (slide == 13) {

@@ -4,7 +4,7 @@ void displayText(boolean a, boolean b) {
     fill(200);
     textAlign(RIGHT);
     textFont(font1);
-    text((selected+1)*2, width/2 - r * 1.15 - 270, 300);
+    //text((selected+1)*2, width/2 - r * 1.15 - 270, 300);
 
 
     for (int i = 0; i<layers.size (); i++) {
@@ -14,7 +14,7 @@ void displayText(boolean a, boolean b) {
         fill(200, 100, 0, 150);
         textAlign(RIGHT);
         textFont(font1);
-        text((l.id+1)*2, width/2-r*2, 300);
+        //text((l.id+1)*2, width/2-r*2, 300);
       }
     }
 
@@ -23,31 +23,34 @@ void displayText(boolean a, boolean b) {
     fill(90);
     textAlign(LEFT);
     textFont(font2);
-    text("/ 108", width/2 - r * 1.15 - 260, 300);
+    //text("/ 108", width/2 - r * 1.15 - 260, 300);
   }
 
 
   fill(200);
   textAlign(LEFT);
   textFont(font0);
-  if (selected < 27) {
-    text("2015", 140, 300);
-  } else {
-    text("2016", 140, 300);
+  if (whichSlide >= 11) {
+    if (selected < 27) {
+      text("2013", 140, 300);
+    } 
+    else {
+      text("2014", 140, 300);
+    }
   }
   if (b) {
     fill(90);
     textAlign(LEFT);
     textFont(font3);
-    text("01.01.2015", width/2 + r*1.3 + 200, 300);
+    text("01.01.2013", width/2 + r*1.3 + 200, 300);
     textAlign(RIGHT);
     textFont(font3);
-    text("31.12.2016", width/2 + r*1.3 + 650, 300);
+    text("31.12.2014", width/2 + r*1.3 + 650, 300);
   }
   fill(70);
   textAlign(LEFT);
   textFont(font3);
-  text(frameRate, 140, 150);
+  //text(frameRate, 140, 150);
 }
 
 void displaySelectedVals(int _s) {
@@ -101,3 +104,4 @@ void displaySelectedVals(int _s) {
     }
   }
 }
+
